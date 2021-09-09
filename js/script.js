@@ -3,6 +3,7 @@ var categoryInput=document.getElementById("productCategory");
 var priceInput=document.getElementById("productPrice");
 var descriptionInput=document.getElementById("productDescription");
 var tbody=document.getElementById("tbody");
+var error=document.getElementById("error");
 var searshInput=document.getElementById("searchInput");
 var index="";
 
@@ -16,20 +17,36 @@ displayProduct();
 
 
 function addProduct(){
-   
+  if(nameInput.value==""||categoryInput.value==""||priceInput.value==""||descriptionInput.value==""){
+    error.innerHTML="please fill all fields";
+    nameInput.onclick=function(){
+      error.innerHTML="";
+    }
+    categoryInput.onclick=function(){
+      error.innerHTML="";
+    }
+    priceInput.onclick=function(){
+      error.innerHTML="";
+    }
+    descriptionInput.onclick=function(){
+      error.innerHTML="";
+    }
+  }
+  else{
   var product={
      pname : nameInput.value,
      pcat : categoryInput.value,
      pprice : Number(priceInput.value),
      pdesc:descriptionInput.value
-  }  
+  } 
+
   products.push(product);
   
   localStorage.setItem("productData",JSON.stringify(products));
   displayProduct();
-  clearProduct();
+  clearProduct();}}
 
-}
+
 function clearProduct(){
   nameInput.value="";
   categoryInput.value="";
@@ -67,6 +84,16 @@ function displayProduct(){
 
 function searshProduct(){
   var str="";
+  // var color="";
+  // for(var i=0; i<products.length; i++){
+  //     if(products[i].pname[i]==searshInput.value[i]){
+  //          color=color+(products[i].pname[i]);
+  //     }
+  //   }
+
+  
+  console.log(color);
+
   for(var i=0; i<products.length; i++){
     if(products[i].pname.includes(searshInput.value)){
       
@@ -123,6 +150,8 @@ function searshProduct(){
     }
    } 
   }
+
+
 
   
 
