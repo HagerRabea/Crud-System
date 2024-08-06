@@ -4,19 +4,17 @@ var priceInput=document.getElementById("productPrice");
 var descriptionInput=document.getElementById("productDescription");
 var tbody=document.getElementById("tbody");
 var searshInput=document.getElementById("searchInput");
+var alertInput=document.getElementById("alertNameInput");
 var index="";
-
 
 if(localStorage.getItem("productData")==null){
   var products=[];
 }else{
-  var products= JSON.parse(localStorage.getItem("productData"));
+ var products= JSON.parse(localStorage.getItem("productData"));
 }
 displayProduct();
-
-
 function addProduct(){
-   
+  if(validationProductName()){
   var product={
      pname : nameInput.value,
      pcat : categoryInput.value,
@@ -24,12 +22,16 @@ function addProduct(){
      pdesc:descriptionInput.value
   }  
   products.push(product);
-  
   localStorage.setItem("productData",JSON.stringify(products));
   displayProduct();
   clearProduct();
-
+}else{
+  alert("ay haga");
 }
+}
+
+
+
 function clearProduct(){
   nameInput.value="";
   categoryInput.value="";
@@ -58,21 +60,23 @@ function displayProduct(){
          </i>Delete
       </button>
   </td></tr>`
-
-  
   }
   tbody.innerHTML=str;
 }
-
-
-function searshProduct(){
+var word="";
+searshInput.addEventListener("keyup",function(){
+     word=searshInput.value;
+     searshProduct(word);
+})
+function searshProduct(word){
   var str="";
+ 
   for(var i=0; i<products.length; i++){
     if(products[i].pname.includes(searshInput.value)){
-      
       str +=`<tr>
       <td>${i}</td>
-      <td>${products[i].pname}</td>
+      <td>${products[i].pname.replace(word,`<span style="background-color: yellow;">${word}</span>`)}
+      </td>
       <td>${products[i].pcat}</td>
       <td>${products[i].pprice}</td>
       <td>${products[i].pdesc}</td>
@@ -87,7 +91,8 @@ function searshProduct(){
         </button>
     </td></tr>`
     }
-    }
+  
+  }
     tbody.innerHTML=str;
   }
 
@@ -98,13 +103,13 @@ function searshProduct(){
     displayProduct();
   }
 
-
+  var button=document.getElementById("update");
   function update(k){
     nameInput.value=products[k].pname;
     categoryInput.value=products[k].pcat;
     priceInput.value=products[k].pprice;
     descriptionInput.value=products[k].pdesc;
-   var button=document.getElementById("update");
+  
    button.innerHTML="updat product";
    button.classList.add("btn-secondary", "text-white")
    button.onclick=function(){
@@ -123,8 +128,25 @@ function searshProduct(){
     }
    } 
   }
+function validationProductName(){
+  var rgex=/^[A-Z][a-z0-9 ]{3,10}$/;
+  var isMatch=rgex.test(nameInput.value);
+   if(isMatch){
+    nameInput.classList.add("is-valid");
+    nameInput.classList.remove("is-invalid");
+    alertInput.classList.add("d-none");
+    button.removeAttribute("disabled");
+    return true;
+   }else{
+     nameInput.classList.add("is-invalid");
+     nameInput.classList.remove("is-valid");
+     alertInput.classList.remove("d-none");
+     button.setAttribute("disabled");
+     return false;
+   }
+}
+nameInput.addEventListener("blur",validationProductName);
 
-  
 
 
 

@@ -12,6 +12,9 @@
         <h1>CRUproductPriceD system</h1>
         <label for="productName">productName:</label>
         <input type="text"  class="form-control" id="productName">
+        <div id="alertNameInput" class="alert d-none alert-danger" role="alert">
+            <strong>Please Start with capital letter.........</strong>
+        </div>
         <label for="">productCategory:</label>
         <input type="text"  class="form-control" id="productCategory">
         <label for="">productPrice:</label>
@@ -21,8 +24,8 @@
        <button class="btn btn-outline-info mt-3 " id="update" onclick="addProduct();" >add product</button>
        <button class="btn btn-outline-info mt-3" onclick="clearProduct();">clear</button>
       </div>
-      <input type="text" placeholder="search..." class="form-control w-25 mx-auto" id="searchInput" onkeyup="searshProduct()">
-      <table class="table container">
+      <input type="text" placeholder="search..." class="form-control w-25 mx-auto" id="searchInput" >
+      <table class="table container ">
           <thead>
               <th>index:</th>
               <th>name:</th>
