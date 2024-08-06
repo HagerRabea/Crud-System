@@ -15,9 +15,9 @@ if(localStorage.getItem("productData")==null){
 }
 displayProduct();
 function addProduct(){
-<<<<<<< HEAD
+ 
   if(validationProductName()){
-=======
+
   if(nameInput.value==""||categoryInput.value==""||priceInput.value==""||descriptionInput.value==""){
     error.innerHTML="please fill all fields";
     nameInput.onclick=function(){
@@ -34,7 +34,6 @@ function addProduct(){
     }
   }
   else{
->>>>>>> 7eff596c62d5c1b486f839efa2290227618215bf
   var product={
      pname : nameInput.value,
      pcat : categoryInput.value,
@@ -45,17 +44,15 @@ function addProduct(){
   products.push(product);
   localStorage.setItem("productData",JSON.stringify(products));
   displayProduct();
-<<<<<<< HEAD
   clearProduct();
-}else{
+}}else{
   alert("ay haga");
 }
+
+
+
+  clearProduct();
 }
-
-=======
-  clearProduct();}}
->>>>>>> 7eff596c62d5c1b486f839efa2290227618215bf
-
 
 function clearProduct(){
   nameInput.value="";
@@ -95,9 +92,7 @@ searshInput.addEventListener("keyup",function(){
 })
 function searshProduct(word){
   var str="";
-<<<<<<< HEAD
- 
-=======
+
   // var color="";
   // for(var i=0; i<products.length; i++){
   //     if(products[i].pname[i]==searshInput.value[i]){
@@ -106,9 +101,7 @@ function searshProduct(word){
   //   }
 
   
-  console.log(color);
 
->>>>>>> 7eff596c62d5c1b486f839efa2290227618215bf
   for(var i=0; i<products.length; i++){
     if(products[i].pname.includes(searshInput.value)){
       str +=`<tr>
@@ -166,7 +159,6 @@ function searshProduct(word){
     }
    } 
   }
-<<<<<<< HEAD
 function validationProductName(){
   var rgex=/^[A-Z][a-z0-9 ]{3,10}$/;
   var isMatch=rgex.test(nameInput.value);
@@ -180,18 +172,17 @@ function validationProductName(){
      nameInput.classList.add("is-invalid");
      nameInput.classList.remove("is-valid");
      alertInput.classList.remove("d-none");
-     button.setAttribute("disabled");
+    //  button.setAttribute("disabled");
      return false;
    }
 }
 nameInput.addEventListener("blur",validationProductName);
 
-=======
+
 
 
 
   
->>>>>>> 7eff596c62d5c1b486f839efa2290227618215bf
 
 
 
