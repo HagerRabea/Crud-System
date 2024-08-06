@@ -3,6 +3,7 @@ var categoryInput=document.getElementById("productCategory");
 var priceInput=document.getElementById("productPrice");
 var descriptionInput=document.getElementById("productDescription");
 var tbody=document.getElementById("tbody");
+var error=document.getElementById("error");
 var searshInput=document.getElementById("searchInput");
 var alertInput=document.getElementById("alertNameInput");
 var index="";
@@ -14,22 +15,46 @@ if(localStorage.getItem("productData")==null){
 }
 displayProduct();
 function addProduct(){
+<<<<<<< HEAD
   if(validationProductName()){
+=======
+  if(nameInput.value==""||categoryInput.value==""||priceInput.value==""||descriptionInput.value==""){
+    error.innerHTML="please fill all fields";
+    nameInput.onclick=function(){
+      error.innerHTML="";
+    }
+    categoryInput.onclick=function(){
+      error.innerHTML="";
+    }
+    priceInput.onclick=function(){
+      error.innerHTML="";
+    }
+    descriptionInput.onclick=function(){
+      error.innerHTML="";
+    }
+  }
+  else{
+>>>>>>> 7eff596c62d5c1b486f839efa2290227618215bf
   var product={
      pname : nameInput.value,
      pcat : categoryInput.value,
      pprice : Number(priceInput.value),
      pdesc:descriptionInput.value
-  }  
+  } 
+
   products.push(product);
   localStorage.setItem("productData",JSON.stringify(products));
   displayProduct();
+<<<<<<< HEAD
   clearProduct();
 }else{
   alert("ay haga");
 }
 }
 
+=======
+  clearProduct();}}
+>>>>>>> 7eff596c62d5c1b486f839efa2290227618215bf
 
 
 function clearProduct(){
@@ -70,7 +95,20 @@ searshInput.addEventListener("keyup",function(){
 })
 function searshProduct(word){
   var str="";
+<<<<<<< HEAD
  
+=======
+  // var color="";
+  // for(var i=0; i<products.length; i++){
+  //     if(products[i].pname[i]==searshInput.value[i]){
+  //          color=color+(products[i].pname[i]);
+  //     }
+  //   }
+
+  
+  console.log(color);
+
+>>>>>>> 7eff596c62d5c1b486f839efa2290227618215bf
   for(var i=0; i<products.length; i++){
     if(products[i].pname.includes(searshInput.value)){
       str +=`<tr>
@@ -128,6 +166,7 @@ function searshProduct(word){
     }
    } 
   }
+<<<<<<< HEAD
 function validationProductName(){
   var rgex=/^[A-Z][a-z0-9 ]{3,10}$/;
   var isMatch=rgex.test(nameInput.value);
@@ -147,6 +186,12 @@ function validationProductName(){
 }
 nameInput.addEventListener("blur",validationProductName);
 
+=======
+
+
+
+  
+>>>>>>> 7eff596c62d5c1b486f839efa2290227618215bf
 
 
 
